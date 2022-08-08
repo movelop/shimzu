@@ -53,37 +53,38 @@ const Home = () => {
   
   return (
     <div>
-        {banners.length > 0 && <HeroBanner heroBanner = {banners.length && banners[0]} />}
-        {products.length && <div className="products-heading">
-          <h2>Best Selling Products</h2>
-          <p>Footwears of many variations</p>
-        </div>}
-        {products.length && <div className="filters">
-          <div className="select">
-            <select id="standard-select" onChange = {handleFilters}>
-              <option value="all">All categories</option>
-              <option value="men">Men</option>
-              <option value="women">Women</option>
-              <option value="kids">Kids</option>
-              <option value="shoes">Shoes</option>
-              <option value="slippers">Slippers</option>
-              <option value="coporate">Coporate </option>
-            </select>
-          </div>
-        </div>}
+      { loading ? <Loading text={'Loading ...'} /> : (
         <div>
-        { loading ? <Loading text={'Loading ...'} /> : (
-          <motion.div 
-            animate = {animateCard}
-            transition={{ duration: 0.5, delayChildren: 0.5 }}
-            className="products-container"
-          >
-          {filteredProducts.map((product, i) => <Product key={i} product={product} /> )}
-        </motion.div>
-        ) }
+            {banners.length > 0 && <HeroBanner heroBanner = {banners.length && banners[0]} />}
+            {products.length && <div className="products-heading">
+              <h2>Best Selling Products</h2>
+              <p>Footwears of many variations</p>
+            </div>}
+            {products.length && <div className="filters">
+              <div className="select">
+                <select id="standard-select" onChange = {handleFilters}>
+                  <option value="all">All categories</option>
+                  <option value="men">Men</option>
+                  <option value="women">Women</option>
+                  <option value="kids">Kids</option>
+                  <option value="shoes">Shoes</option>
+                  <option value="slippers">Slippers</option>
+                  <option value="coporate">Coporate </option>
+                </select>
+              </div>
+            </div>}
+              <motion.div 
+                animate = {animateCard}
+                transition={{ duration: 0.5, delayChildren: 0.5 }}
+                className="products-container"
+              >
+              {filteredProducts.map((product, i) => <Product key={i} product={product} /> )}
+            </motion.div>
+            
+            
+            {banners.length > 0  && <FooterBanner footerBanner ={banners.length && banners[0]} />}
         </div>
-        
-        {banners.length > 0  && <FooterBanner footerBanner ={banners.length && banners[0]} />}
+    ) }
     </div>
   )
 }
