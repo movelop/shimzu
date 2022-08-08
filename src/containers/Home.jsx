@@ -54,11 +54,11 @@ const Home = () => {
   return (
     <div>
         {banners.length > 0 && <HeroBanner heroBanner = {banners.length && banners[0]} />}
-        <div className="products-heading">
+        {products.length && <div className="products-heading">
           <h2>Best Selling Products</h2>
           <p>Footwears of many variations</p>
-        </div>
-        <div className="filters">
+        </div>}
+        {products.length && <div className="filters">
           <div className="select">
             <select id="standard-select" onChange = {handleFilters}>
               <option value="all">All categories</option>
@@ -70,7 +70,7 @@ const Home = () => {
               <option value="coporate">Coporate </option>
             </select>
           </div>
-        </div>
+        </div>}
         <div>
         { loading ? <Loading text={'Loading ...'} /> : (
           <motion.div 
