@@ -1173,15 +1173,15 @@ span.text-red {
     margin-bottom: 15px;
   }
 
-  .product-image {
+  .products-container > div .product-image {
     height: 180px;
   }
 
-  .product-name {
+  .products-container > div .product-name {
     font-size: 14px;
   }
 
-  .product-price {
+  .products-container > div .product-price {
     margin-top: 2px;
     font-size: 14px;
   }
@@ -1231,7 +1231,7 @@ span.text-red {
   }
 
   .marquee {
-    height: 250px;
+    height: 350px;
   }
 
 }
