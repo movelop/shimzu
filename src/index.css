@@ -259,7 +259,7 @@ span.text-red {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   margin-right: 50px;
 }
 
@@ -993,6 +993,10 @@ span.text-red {
 
   .desc {
     bottom: 60px;
+  }
+
+  .filters {
+    margin-right: 60px;
   }
 
   .product-detail-container {
