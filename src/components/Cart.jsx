@@ -116,8 +116,6 @@ const Cart = () => {
     },   
     onClose: () => alert("Wait! Don't leave :("),
   }
-
-  console.log(cartItems);
   
   return (
     <div className='cart-wrapper' ref={cartRef} onClick={handleClick}>

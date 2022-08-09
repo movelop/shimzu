@@ -38,8 +38,6 @@ const ProductDetails = () => {
     setShowCart(true);
   };
 
-  console.log(selectedSize);
-
   return (
     <div>
       {loading ? <Loading text={'Loading ...'} /> : (

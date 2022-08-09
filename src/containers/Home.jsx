@@ -47,9 +47,6 @@ const Home = () => {
       }
     }, 500);
   }
-
-  console.log(filteredProducts);
-
   
   return (
     <div>
