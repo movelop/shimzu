@@ -6,11 +6,17 @@ const Footer = () => {
   return (
     <div className='footer-container'>
       <p>@{new Date().getFullYear()} Shimzu Leather Brand All rights reserved</p>
-      <p className="icons">
-        <AiFillInstagram />
-        <AiOutlineTwitter />
-        <RiWhatsappFill />
-      </p>
+      <div className="icons">
+        <a href="https://www.instagram.com/shimzuleatherbrand/" target="_blank" rel="noopener noreferrer" >
+          <AiFillInstagram />
+        </a>
+        <a href="https://www.instagram.com/shimzuleatherbrand/" target="_blank" rel="noopener noreferrer" >
+          <AiOutlineTwitter />
+        </a>
+        <a href="https://www.instagram.com/shimzuleatherbrand/" target="_blank" rel="noopener noreferrer" >
+          <RiWhatsappFill />
+        </a>
+      </div>
     </div>
   )
 }
