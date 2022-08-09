@@ -729,7 +729,6 @@ span.text-red {
 
 .size {
   display: flex;
-  flex-direction: column;
   gap: 5px;
   align-items: center;
 }
@@ -738,9 +737,9 @@ span.text-red {
   font-size: 18px;
 }
 
-.size > .cursor-pointer {
-  width: 25px;
-  height: 25px;
+.size > input {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 }
 
@@ -1177,11 +1176,13 @@ span.text-red {
     height: 180px;
   }
 
-  .products-container > div .product-name {
+  .products-container > div .product-name,
+  .maylike-products-container > div {
     font-size: 14px;
   }
 
-  .products-container > div .product-price {
+  .products-container > div .product-price,
+  .maylike-products-container > div {
     margin-top: 2px;
     font-size: 14px;
   }
@@ -1231,12 +1232,12 @@ span.text-red {
   }
 
   .marquee {
-    height: 350px;
+    height: 250px;
   }
 
   .maylike-products-container > div .product-image {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
   }
 
 }

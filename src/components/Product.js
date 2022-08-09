@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { urlFor } from '../lib/client';
 
 const Product = ({ product }) => {
-  const { images, name, price, slug, size} = product;
+  const { images, name, price, slug, color } = product;
   return (
     <div>
         <Link to={`/products/${slug.current}`} >
@@ -15,7 +15,7 @@ const Product = ({ product }) => {
                   alt="product"
                   className="product-image"
               />
-              <p className="product-name">{name} ({size})</p>
+              <p className="product-name">{name} ({color})</p>
               <p className="product-price"><TbCurrencyNaira />{price.toLocaleString('en-US')}</p>
             </div>
       </Link>

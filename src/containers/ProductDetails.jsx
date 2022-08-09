@@ -14,6 +14,7 @@ const ProductDetails = () => {
   const [index, setIndex] = useState(0);
   const [product, setProduct] = useState({});
   const [products, setProducts] = useState([]);
+  const [selectedSize, setSelectedSize] = useState('');
   const { images, name, price, details, size, color } = product;
   const { decQty, incQty, qty, onAdd, setShowCart, loading, setLoading } = useStateContext();
   useEffect(() => {
@@ -32,10 +33,12 @@ const ProductDetails = () => {
   },[slug, setLoading]);
 
   const handleBuyNow = () => {
-    onAdd(product, qty);
+    onAdd(product, qty, selectedSize);
 
     setShowCart(true);
   };
+
+  console.log(selectedSize);
 
   return (
     <div>
@@ -89,11 +92,18 @@ const ProductDetails = () => {
                 <span>{color}</span>
               </div>
               <div className="colors">
-                <h3>Size:</h3>
-                <span>{size}</span>
+                <h3>Sizes:</h3>
+                <div className="sizes">
+                  {size?.map((item, i) => (
+                    <div className="size" key={i}>
+                      <label>{item}</label>
+                      <input type="radio" name={selectedSize} value={item} onChange={() => setSelectedSize(item)} />
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="buttons">
-                <button type='button' className="add-to-cart" onClick={() =>onAdd(product, qty)}>
+                <button type='button' className="add-to-cart" onClick={() =>onAdd(product, qty, selectedSize)}>
                   Add to cart
                 </button>
                 <button type='button' className="buy-now" onClick={handleBuyNow}>

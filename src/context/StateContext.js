@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
+import { v4 as uuidv4 } from 'uuid'; 
 
 const Context = createContext();
 
@@ -35,11 +36,11 @@ export const StateContext = ({ children }) => {
         localStorage.setItem('totalQuantities', JSON.stringify(totalQuantities));
     } , [totalQuantities]);
 
-    const onAdd = (product, quantity) => {
-        const checkProductInCart = cartItems.find(item => item._id === product._id);
+    const onAdd = (product, quantity, selectedSize) => {
+        const checkProductInCart = cartItems.find(item => item._id === product._id && item.preferredSize  === selectedSize);
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
-        
+        const choice = product;
         if(checkProductInCart) {
 
             const updatedCartItems = cartItems.map(item => {
@@ -51,8 +52,10 @@ export const StateContext = ({ children }) => {
             })
             setCartItems(updatedCartItems);
         } else {
-            product.quantity = quantity;
-            setCartItems([...cartItems, { ...product }]);
+            choice.quantity = quantity;
+            choice.preferredSize = selectedSize;
+            choice.uniqueCode = uuidv4();
+            setCartItems([...cartItems, { ...choice }]);
         }
 
         toast.success(`${qty} ${product.name} added to the cart.`);
@@ -69,12 +72,12 @@ export const StateContext = ({ children }) => {
 
     const toggleCartItemQuantity =(id, value) => {
         
-        foundProduct = cartItems.find(item => item._id === id);
+        foundProduct = cartItems.find(item => item.uniqueCode === id);
 
         if(value === 'inc') {
             foundProduct.quantity += 1;
             const newCartItems = cartItems.map((item) => {
-                if(foundProduct._id === item._id) return foundProduct;
+                if(foundProduct.uniqueCode === item.uniqueCode) return foundProduct;
 
                 return item;    
             });
@@ -85,7 +88,7 @@ export const StateContext = ({ children }) => {
             if(foundProduct.quantity > 1){
                 foundProduct.quantity -= 1;
                 const newCartItems = cartItems.map((item) => {
-                    if(foundProduct._id === item._id) return foundProduct;
+                    if(foundProduct.uniqueCode === item.uniqueCode) return foundProduct;
 
                     return item;
                 })

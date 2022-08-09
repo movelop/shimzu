@@ -90,6 +90,7 @@ const Cart = () => {
         slug: undefined,
         _key: uuidv4(),
         details: undefined,
+        size: undefined,
       }))
     } 
     setLoading(true)
@@ -115,6 +116,8 @@ const Cart = () => {
     },   
     onClose: () => alert("Wait! Don't leave :("),
   }
+
+  console.log(cartItems);
   
   return (
     <div className='cart-wrapper' ref={cartRef} onClick={handleClick}>
@@ -154,17 +157,17 @@ const Cart = () => {
                 <img src={urlFor(item?.images[0])} alt="product" className='cart-product-image'/>
                 <div className="item-desc">
                   <div className="flex top">
-                    <h5>{item.name}</h5>
+                    <h5>{item.name} ({item.preferredSize})</h5>
                     <h4><TbCurrencyNaira />{item.price?.toLocaleString('en-US')}</h4>
                   </div>
                   <div className="flex bottom">
                     <div>
                       <p className="quantity-desc">
-                        <span className="minus" onClick={() => toggleCartItemQuantity(item._id, 'dec')}>
+                        <span className="minus" onClick={() => toggleCartItemQuantity(item.uniqueCode, 'dec')}>
                           <AiOutlineMinus/>
                         </span>
                         <span className="num">{item.quantity}</span>
-                        <span className="plus" onClick={() => toggleCartItemQuantity(item._id, 'inc')}>
+                        <span className="plus" onClick={() => toggleCartItemQuantity(item.uniqueCode, 'inc')}>
                           <AiOutlinePlus/>
                         </span>
                       </p>
