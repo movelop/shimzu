@@ -7,6 +7,7 @@ import { TbCurrencyNaira } from 'react-icons/tb';
 import { Loading, Product } from '../components';
 import { useStateContext } from '../context/StateContext';
 import { client, urlFor } from '../lib/client';
+import toast from 'react-hot-toast';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -32,10 +33,23 @@ const ProductDetails = () => {
     getserverside();
   },[slug, setLoading]);
 
-  const handleBuyNow = () => {
-    onAdd(product, qty, selectedSize);
+  const handleAdd = () => {
+    if(selectedSize !== "") {
+      onAdd(product, qty, selectedSize);
+    } else {
+      toast.error('Please select a size');
+    }
+  }
 
-    setShowCart(true);
+  const handleBuyNow = () => {
+
+    if(selectedSize !== '') {
+      onAdd(product, qty, selectedSize);
+      setShowCart(true);
+    } else {
+      toast.error('Please select a size');
+    }
+    
   };
 
   return (
@@ -101,7 +115,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="buttons">
-                <button type='button' className="add-to-cart" onClick={() =>onAdd(product, qty, selectedSize)}>
+                <button type='button' className="add-to-cart" onClick={handleAdd}>
                   Add to cart
                 </button>
                 <button type='button' className="buy-now" onClick={handleBuyNow}>
