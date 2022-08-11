@@ -18,6 +18,11 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const { images, name, price, details, size, color } = product;
   const { decQty, incQty, qty, onAdd, setShowCart, loading, setLoading } = useStateContext();
+
+  useEffect(() => {
+    setSelectedSize('')
+  }, [location]);
+
   useEffect(() => {
     const getserverside = async() => {
       setLoading(true);
